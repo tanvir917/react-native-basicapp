@@ -1,58 +1,21 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
-import GoalItem from './components/GoalItem'
-import GoalInput from './components/GoalInput'
+import Header from './components/Header';
+import StartGameScreen from './screens/StartGameScreen';
 
 export default function App() {
-  const [courseGoals, setCourseGoals] = useState([]);
-  const [isAddMode, setIsAddMode] = useState(false);
-
-  const addGoalHandler = goalTitle => {
-    //console.log(enteredGoal);
-    setCourseGoals(currentGoals => [
-      ...currentGoals, 
-      { key: Math.random().toString(), value: goalTitle}
-    ]);
-    setIsAddMode(false);
-  }
-
-  const removeGoalHandler = goalId => {
-    setCourseGoals(currentGoals => {
-      return currentGoals.filter((goal) => goal.key !== goalId);
-    });
-  }
-
-  const cancelGoalAdditionHandler = () => {
-    setIsAddMode(false);
-  }
 
   return (
     <View style={styles.screen}>
-      <Button title="Add new Goal" onPress={() => setIsAddMode(true)}/>
-      <GoalInput 
-        visible={isAddMode} 
-        onAddGoal={addGoalHandler}
-        onCancel={cancelGoalAdditionHandler}
-      />
-      <FlatList 
-        data={courseGoals} 
-        renderItem={itemData => 
-          <GoalItem 
-            id={itemData.item.key}  
-            onDelete={removeGoalHandler}  
-            title={itemData.item.value}
-          />
-        }
-      >
-          
-      </FlatList>
+      <Header title='Guess a Number'/>
+      <StartGameScreen/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 50
+    flex: 1
   }
 });
 
