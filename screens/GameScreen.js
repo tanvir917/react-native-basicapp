@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList, Alert 
 import Colors from '../constants/colors';
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
+import MainButton from '../components/MainButton';
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -55,8 +56,12 @@ const GameScreen = props => {
             <Text>Opponent's Guess</Text>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.buttoncontainer}>
-                <Button title="LOWER" onPress={nextGuesshandler.bind(this, 'lower')}/>
-                <Button title="GREATER" onPress={nextGuesshandler.bind(this, 'greater')}/>
+                <MainButton onPress={nextGuesshandler.bind(this, 'lower')}>
+                    LOWER
+                </MainButton>
+                <MainButton onPress={nextGuesshandler.bind(this, 'greater')}>
+                    GREATER
+                </MainButton>
             </Card>
         </View>
     )
@@ -72,8 +77,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 20,
-        width: 300,
-        maxWidth: '80%'
+        width: 400,
+        maxWidth: '90%'
     }
   });
 
