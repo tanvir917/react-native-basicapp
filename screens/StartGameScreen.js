@@ -15,12 +15,6 @@ const StartGameScreen = props => {
   const [selectedNumber, setSelectedNumber] = useState();
   const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4);
 
-  const updateLayout = () => {
-    setButtonWidth(Dimensions.get('window').width / 4);
-  }
-
-  Dimensions.addEventListener('change', updateLayout);
-
   const numberInputHandler = inputText => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ''));
   };
