@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, FlatList, Alert } from 'react-native';
 import Colors from '../constants/colors';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -73,8 +73,8 @@ const GameScreen = props => {
                     <Ionicons name="md-add" size={24} color="white"/>
                 </MainButton>
             </Card>
-            <View style={styles.list}>
-                <ScrollView>
+            <View style={styles.listContainer}>
+                <ScrollView contentContainerStyle={styles.list}>
                     {pastGuesses.map((guess, index )=> renderListItem(guess, pastGuesses.length - index))}
                 </ScrollView>
             </View>
@@ -95,18 +95,24 @@ const styles = StyleSheet.create({
         width: 400,
         maxWidth: '90%'
     },
-    list: {
+    listContainer: {
         flex: 1,
         width: '80%'
     },
-    listItem: {
+    list: {
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
+    listItem: { 
         borderColor: '#ccc',
         borderWidth: 1,
         padding: 15,
         marginVertical: 10,
         backgroundColor: 'white',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        width: '60%'
     }
   });
 
